@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+puts "What's your email?"
+email = gets.chomp
+u = User.new(email: email)
+u.save!
+puts "Hello, #{u.email}"
+
+puts "0: create short url"
+puts "1: visit short url"
+choice = gets.chomp
+puts "Invalid option, bye!" unless ["0", "1"].include?(choice)
+
+if choice == "0"
+  puts "input the long url"
+  long = gets.chomp
+  url = ShortenedUrl.create!(u, long)
+  url.save!
+  puts "Here's the shortened url"
+  puts url.short_url
+  puts "bye!"
+else
+  puts "input the short url to visit"
+  short = gets.chomp
+  url = ShortenedUrl.find_by(short_url: short)
+  puts "Here's the long url"
+  puts url.long_url
+  puts "bye!"
+end
+
