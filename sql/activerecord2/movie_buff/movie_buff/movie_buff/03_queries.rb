@@ -20,12 +20,16 @@ def costars(name)
   # List the names of the actors that the named actor has ever
   # appeared with.
   # Hint: use a subquery
+  subq = Movie.joins(:actors).where(actors: {name: name}).pluck(:id)
+
+  Movie.joins(:actors).where("actors.name != ? AND movies.id IN (?)", name, subq).distinct.pluck("actors.name")
+
 
 end
 
 def actor_out_of_work
   # Find the number of actors in the database who have not appeared in a movie
-
+  Actor.left_joins(:movies).where("movies.id is null").count
 end
 
 def starring(whazzername)
@@ -35,7 +39,8 @@ def starring(whazzername)
 
   # ex. "Sylvester Stallone" is like "sylvester" and "lester stone" but
   # not like "stallone sylvester" or "zylvester ztallone"
-
+  matcher = "%#{whazzername.split("").join("%")}%"
+  Movie.joins(:actors).where("actors.name iLIKE ?", matcher)
 end
 
 def longest_career
@@ -43,5 +48,5 @@ def longest_career
   # (the greatest time between first and last movie).
   # Order by actor names. Show each actor's id, name, and the length of
   # their career.
-
+  Actor.select("actors.id, name, max(movies.yr) - min(movies.yr) as career").joins(:movies).group(:id).order("career DESC, actors.name").limit(3)
 end
