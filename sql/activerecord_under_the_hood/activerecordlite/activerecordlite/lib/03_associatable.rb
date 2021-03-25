@@ -1,5 +1,6 @@
 require_relative '02_searchable'
 require 'active_support/inflector'
+require 'byebug'
 
 # Phase IIIa
 class AssocOptions
@@ -26,9 +27,9 @@ class BelongsToOptions < AssocOptions
   def initialize(name, options = {})
     # ...
     defaults = {
-      foreign_key: (name.downcase + "_id").to_sym,
+      foreign_key: (name.to_s.downcase + "_id").to_sym,
       primary_key: :id,
-      class_name: name.camelcase
+      class_name: name.to_s.camelcase
     }
 
     defaults.keys.each do |key|
@@ -42,7 +43,15 @@ end
 class HasManyOptions < AssocOptions
   def initialize(name, self_class_name, options = {})
     # ...
-    
+    defaults = {
+      foreign_key: (self_class_name.to_s.downcase + "_id").to_sym,
+      primary_key: :id,
+      class_name: name.to_s.camelcase.singularize
+    }
+
+    defaults.keys.each do |key|
+      self.send("#{key}=", options[key] || defaults[key])
+    end
   end
 end
 
@@ -50,10 +59,19 @@ module Associatable
   # Phase IIIb
   def belongs_to(name, options = {})
     # ...
+    
+    define_method(name) {
+      belong = BelongsToOptions.new(name, options)
+      belong.model_class.where(belong.primary_key => self.send(belong.foreign_key)).first
+    }
   end
 
   def has_many(name, options = {})
     # ...
+    define_method(name) {
+      hasm = HasManyOptions.new(name, self.class.to_s, options)
+      hasm.model_class.where(hasm.foreign_key => self.id)
+    }
   end
 
   def assoc_options
@@ -63,4 +81,5 @@ end
 
 class SQLObject
   # Mixin Associatable here...
+  extend Associatable
 end

@@ -1,4 +1,5 @@
 require '03_associatable'
+require 'byebug'
 
 describe 'AssocOptions' do
   describe 'BelongsToOptions' do
