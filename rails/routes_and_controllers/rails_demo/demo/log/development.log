@@ -1,0 +1,99 @@
+  [1m[35m (553.2ms)[0m  [1m[35mCREATE DATABASE "demo_development" ENCODING = 'unicode'[0m
+  [1m[35m (320.3ms)[0m  [1m[35mCREATE DATABASE "demo_test" ENCODING = 'unicode'[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4665045258403983075)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCats (20210329091028)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.7ms)[0m  [1m[35mCREATE TABLE "cats" ("id" bigserial primary key, "name" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210329091028"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-03-29 09:11:16.234579"], ["updated_at", "2021-03-29 09:11:16.234579"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4665045258403983075)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(4665045258403983075)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateToys (20210329091159)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "toys" ("id" bigserial primary key, "cat_id" integer NOT NULL, "name" character varying NOT NULL, "ttype" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210329091159"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(4665045258403983075)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCat Create (0.4ms)[0m  [1m[32mINSERT INTO "cats" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Billy"], ["created_at", "2021-03-29 09:28:24.595929"], ["updated_at", "2021-03-29 09:28:24.595929"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCat Load (0.2ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mToy Create (0.4ms)[0m  [1m[32mINSERT INTO "toys" ("cat_id", "name", "ttype", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cat_id", 1], ["name", "Billy"], ["ttype", "yarnball"], ["created_at", "2021-03-29 09:28:27.523646"], ["updated_at", "2021-03-29 09:28:27.523646"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCat Load (0.3ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCat Update (0.2ms)[0m  [1m[33mUPDATE "cats" SET "name" = $1, "updated_at" = $2 WHERE "cats"."id" = $3[0m  [["name", "Gizmo"], ["updated_at", "2021-03-29 09:29:58.048986"], ["id", 1]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCat Load (0.8ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCat Load (0.8ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mToy Load (0.2ms)[0m  [1m[34mSELECT "toys".* FROM "toys" WHERE "toys"."cat_id" = $1[0m  [["cat_id", 1]]
+Started GET "/toy" for 127.0.0.1 at 2021-03-29 20:11:48 +0900
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/toy"):
+  
+Started GET "/toys" for 127.0.0.1 at 2021-03-29 20:12:42 +0900
+Processing by ToysController#index as */*
+  [1m[36mToy Load (0.6ms)[0m  [1m[34mSELECT "toys".* FROM "toys"[0m
+  ↳ app/controllers/toys_controller.rb:3:in `index'
+Completed 200 OK in 11ms (Views: 4.0ms | ActiveRecord: 3.6ms | Allocations: 7063)
+
+
+Started GET "/cats" for 127.0.0.1 at 2021-03-29 20:12:49 +0900
+
+ActionController::RoutingError - uninitialized constant CatsController:
+
+Started GET "/toys" for 127.0.0.1 at 2021-03-29 20:13:00 +0900
+Processing by ToysController#index as */*
+  [1m[36mToy Load (0.5ms)[0m  [1m[34mSELECT "toys".* FROM "toys"[0m
+  ↳ app/controllers/toys_controller.rb:3:in `index'
+Completed 200 OK in 2ms (Views: 1.2ms | ActiveRecord: 0.5ms | Allocations: 1131)
+
+
+Started POST "/toys" for 127.0.0.1 at 2021-03-29 20:15:05 +0900
+Processing by ToysController#create as */*
+  Parameters: {"cat_id"=>1, "name"=>"stringy", "ttype"=>"string", "toy"=>{"cat_id"=>1, "name"=>"stringy", "ttype"=>"string"}}
+Can't verify CSRF token authenticity.
+Completed 422 Unprocessable Entity in 0ms (ActiveRecord: 0.0ms | Allocations: 892)
+
+
+
+ActionController::InvalidAuthenticityToken - ActionController::InvalidAuthenticityToken:
+
+Started POST "/toys" for 127.0.0.1 at 2021-03-29 20:21:16 +0900
+Processing by ToysController#create as */*
+  Parameters: {"cat_id"=>1, "name"=>"stringy", "ttype"=>"string", "toy"=>{"cat_id"=>1, "name"=>"stringy", "ttype"=>"string"}}
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/toys_controller.rb:17:in `create'
+  [1m[36mCat Load (0.5ms)[0m  [1m[34mSELECT "cats".* FROM "cats" WHERE "cats"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/toys_controller.rb:17:in `create'
+  [1m[36mToy Create (0.6ms)[0m  [1m[32mINSERT INTO "toys" ("cat_id", "name", "ttype", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["cat_id", 1], ["name", "stringy"], ["ttype", "string"], ["created_at", "2021-03-29 11:21:16.599225"], ["updated_at", "2021-03-29 11:21:16.599225"]]
+  ↳ app/controllers/toys_controller.rb:17:in `create'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/toys_controller.rb:17:in `create'
+Completed 200 OK in 18ms (Views: 0.2ms | ActiveRecord: 11.8ms | Allocations: 12230)
+
+
+Started GET "/toys" for 127.0.0.1 at 2021-03-29 20:21:25 +0900
+Processing by ToysController#index as */*
+  Parameters: {"cat_id"=>1, "name"=>"stringy", "ttype"=>"string", "toy"=>{"cat_id"=>1, "name"=>"stringy", "ttype"=>"string"}}
+  [1m[36mToy Load (0.8ms)[0m  [1m[34mSELECT "toys".* FROM "toys"[0m
+  ↳ app/controllers/toys_controller.rb:3:in `index'
+Completed 200 OK in 3ms (Views: 1.7ms | ActiveRecord: 0.8ms | Allocations: 1221)
+
+
