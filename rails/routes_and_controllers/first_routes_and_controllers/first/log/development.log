@@ -1,0 +1,285 @@
+  [1m[35m (553.6ms)[0m  [1m[35mCREATE DATABASE "first_development" ENCODING = 'unicode'[0m
+  [1m[35m (310.7ms)[0m  [1m[35mCREATE DATABASE "first_test" ENCODING = 'unicode'[0m
+Started GET "/users" for 127.0.0.1 at 2021-04-02 23:06:02 +0900
+
+AbstractController::ActionNotFound - The action 'index' could not be found for UsersController:
+
+Started GET "/users" for 127.0.0.1 at 2021-04-02 23:07:37 +0900
+Processing by UsersController#index as */*
+  Parameters: {"cat_id"=>1, "name"=>"stringy", "ttype"=>"string", "user"=>{"cat_id"=>1, "name"=>"stringy", "ttype"=>"string"}}
+No template found for UsersController#index, rendering head :no_content
+Completed 204 No Content in 9ms (ActiveRecord: 0.0ms | Allocations: 2118)
+
+
+Started GET "/users" for 127.0.0.1 at 2021-04-02 23:08:42 +0900
+Processing by UsersController#index as */*
+No template found for UsersController#index, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 207)
+
+
+Started GET "/users" for 127.0.0.1 at 2021-04-02 23:10:14 +0900
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.1ms | Allocations: 28)
+Completed 200 OK in 5ms (Views: 4.8ms | ActiveRecord: 0.0ms | Allocations: 1448)
+
+
+Started GET "/users?admin=true" for 127.0.0.1 at 2021-04-02 23:12:43 +0900
+Processing by UsersController#index as */*
+  Parameters: {"admin"=>"true"}
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 26)
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 253)
+
+
+Started GET "/users/" for 127.0.0.1 at 2021-04-02 23:13:17 +0900
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 26)
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 251)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2021-04-02 23:13:39 +0900
+
+AbstractController::ActionNotFound - The action 'show' could not be found for UsersController
+Did you mean?  index:
+
+Started GET "/users" for 127.0.0.1 at 2021-04-02 23:13:53 +0900
+Processing by UsersController#index as */*
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 25)
+Completed 200 OK in 0ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 250)
+
+
+Started POST "/users?master=true" for 127.0.0.1 at 2021-04-02 23:15:16 +0900
+Processing by UsersController#create as */*
+  Parameters: {"master"=>"true"}
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 211)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2021-04-02 23:27:17 +0900
+
+AbstractController::ActionNotFound - The action 'show' could not be found for UsersController
+Did you mean?  index
+               create:
+
+Started GET "/users/2" for 127.0.0.1 at 2021-04-02 23:27:36 +0900
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"2"}
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 204)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2021-04-02 23:45:58 +0900
+Processing by UsersController#show as */*
+  Parameters: {"cat[host]"=>"me", "cat[name]"=>"wowza", "cat[name][what]"=>"whaaa", "id"=>"2", "user"=>{"cat[host]"=>"me", "cat[name]"=>"wowza", "cat[name][what]"=>"whaaa"}}
+Completed 200 OK in 0ms (Views: 0.1ms | Allocations: 259)
+
+
+  [1m[35m (7.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3243164389206928200)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210402145655)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_advisory_unlock(3243164389206928200)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3243164389206928200)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20210402145655)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "name" character varying NOT NULL, "email" character varying NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20210402145655"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-04-02 14:58:29.366338"], ["updated_at", "2021-04-02 14:58:29.366338"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(3243164389206928200)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users/" for 127.0.0.1 at 2021-04-03 00:00:20 +0900
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"cat[host]"=>"me", "cat[name]"=>"wowza", "cat[name][what]"=>"whaaa", "user"=>{}}
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 26)
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 1.4ms | Allocations: 370)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:00:24 +0900
+Processing by UsersController#create as */*
+  Parameters: {"cat[host]"=>"me", "cat[name]"=>"wowza", "cat[name][what]"=>"whaaa", "user"=>{}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 223)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:00:30 +0900
+Processing by UsersController#create as */*
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 189)
+
+
+Started POST "/users/?name=hey&email=dudu" for 127.0.0.1 at 2021-04-03 00:00:59 +0900
+Processing by UsersController#create as */*
+  Parameters: {"name"=>"hey", "email"=>"dudu"}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 207)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:02:04 +0900
+Processing by UsersController#create as */*
+  Parameters: {"user[name]"=>"hey", "user[email]"=>"dubba", "user"=>{}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 214)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:03:45 +0900
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"hey", "email"=>"dubba"}}
+Completed 200 OK in 0ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 214)
+
+
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Kieu"], ["email", "kkkkk"], ["created_at", "2021-04-02 15:04:46.680502"], ["updated_at", "2021-04-02 15:04:46.680502"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Linh"], ["email", "llll"], ["created_at", "2021-04-02 15:05:00.364094"], ["updated_at", "2021-04-02 15:05:00.364094"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/users/" for 127.0.0.1 at 2021-04-03 00:05:54 +0900
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"hey", "email"=>"dubba"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 8ms (Views: 4.0ms | ActiveRecord: 3.9ms | Allocations: 4538)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:11:42 +0900
+
+SyntaxError - syntax error, unexpected end-of-input, expecting `end':
+  app/controllers/users_controller.rb:18:in `'
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:11:59 +0900
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"hey", "email"=>"dubba"}}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "hey"], ["email", "dubba"], ["created_at", "2021-04-02 15:11:59.350799"], ["updated_at", "2021-04-02 15:11:59.350799"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 8.0ms | Allocations: 7501)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:12:09 +0900
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"heyyooo", "email"=>"gooba"}}
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "heyyooo"], ["email", "gooba"], ["created_at", "2021-04-02 15:12:09.016012"], ["updated_at", "2021-04-02 15:12:09.016012"]]
+  ↳ app/controllers/users_controller.rb:8:in `create'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:8:in `create'
+Completed 200 OK in 7ms (Views: 0.2ms | ActiveRecord: 2.8ms | Allocations: 2511)
+
+
+Started GET "/users/" for 127.0.0.1 at 2021-04-03 00:12:13 +0900
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"heyyooo", "email"=>"gooba"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 6ms (Views: 5.6ms | ActiveRecord: 0.6ms | Allocations: 1409)
+
+
+Started POST "/users/" for 127.0.0.1 at 2021-04-03 00:14:37 +0900
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"name"=>"heyyooo"}}
+Completed 422 Unprocessable Entity in 7ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 5922)
+
+
+Started GET "/users/" for 127.0.0.1 at 2021-04-03 00:15:00 +0900
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"name"=>"heyyooo"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.5ms | Allocations: 1358)
+
+
+Started GET "/users/1" for 127.0.0.1 at 2021-04-03 00:15:32 +0900
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"name"=>"heyyooo"}, "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:16:in `show'
+Completed 200 OK in 9ms (Views: 0.2ms | ActiveRecord: 4.8ms | Allocations: 4244)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2021-04-03 00:17:09 +0900
+Processing by UsersController#update as */*
+  Parameters: {"id"=>"1"}
+No template found for UsersController#update, rendering head :no_content
+Completed 204 No Content in 1ms (ActiveRecord: 0.0ms | Allocations: 1589)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2021-04-03 00:17:56 +0900
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"email"=>"kuuuuuuu"}, "id"=>"1"}
+No template found for UsersController#update, rendering head :no_content
+Completed 204 No Content in 0ms (ActiveRecord: 0.0ms | Allocations: 199)
+
+
+Started PATCH "/users/1" for 127.0.0.1 at 2021-04-03 00:19:27 +0900
+Processing by UsersController#update as */*
+  Parameters: {"user"=>{"email"=>"kuuuuuuu"}, "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `update'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:22:in `update'
+  [1m[36mUser Update (0.5ms)[0m  [1m[33mUPDATE "users" SET "email" = $1, "updated_at" = $2 WHERE "users"."id" = $3[0m  [["email", "kuuuuuuu"], ["updated_at", "2021-04-02 15:19:27.776359"], ["id", 1]]
+  ↳ app/controllers/users_controller.rb:22:in `update'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:22:in `update'
+Completed 200 OK in 11ms (Views: 0.2ms | ActiveRecord: 5.8ms | Allocations: 5777)
+
+
+Started DELETE "/users/2" for 127.0.0.1 at 2021-04-03 00:21:54 +0900
+
+SyntaxError - syntax error, unexpected end-of-input, expecting `end':
+  app/controllers/users_controller.rb:41:in `'
+
+Started DELETE "/users/2" for 127.0.0.1 at 2021-04-03 00:22:10 +0900
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"email"=>"kuuuuuuu"}, "id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:30:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mUser Destroy (0.6ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 5.7ms | Allocations: 7842)
+
+
+
+ActionView::MissingTemplate - Missing template users/destroy, application/destroy with {:locale=>[:en], :formats=>[:html, :text, :js, :css, :ics, :csv, :vcf, :vtt, :png, :jpeg, :gif, :bmp, :tiff, :svg, :mpeg, :mp3, :ogg, :m4a, :webm, :mp4, :otf, :ttf, :woff, :woff2, :xml, :rss, :atom, :yaml, :multipart_form, :url_encoded_form, :json, :pdf, :zip, :gzip], :variants=>[], :handlers=>[:raw, :erb, :html, :builder, :ruby, :jbuilder]}. Searched in:
+  * "/home/lim/Documents/appacademy/rails/routes_and_controllers/first_routes_and_controllers/first/app/views"
+  * "/home/lim/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/actiontext-6.1.3.1/app/views"
+  * "/home/lim/.rbenv/versions/2.7.2/lib/ruby/gems/2.7.0/gems/actionmailbox-6.1.3.1/app/views":
+  app/controllers/users_controller.rb:32:in `destroy'
+
+Started GET "/users/" for 127.0.0.1 at 2021-04-03 00:22:45 +0900
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"email"=>"kuuuuuuu"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:3:in `index'
+Completed 200 OK in 7ms (Views: 3.4ms | ActiveRecord: 3.3ms | Allocations: 3896)
+
+
+Started DELETE "/users/3" for 127.0.0.1 at 2021-04-03 00:22:54 +0900
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"email"=>"kuuuuuuu"}, "id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:30:in `destroy'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mUser Destroy (0.5ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 3]]
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:31:in `destroy'
+  Rendering text template
+  Rendered text template (Duration: 0.0ms | Allocations: 26)
+Completed 200 OK in 5ms (Views: 0.4ms | ActiveRecord: 2.4ms | Allocations: 2904)
+
+
