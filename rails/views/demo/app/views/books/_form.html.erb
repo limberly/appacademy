@@ -1,0 +1,46 @@
+
+<%if action == :edit%>
+  <% action_url = book_url(book)
+  %>
+<%else%>
+  <% action_url = books_url%>
+<%end%>
+
+
+<form action="<%=action_url%>" method="post">
+
+  <%if action == :edit %>
+  <input type="hidden" name="_method" value="PATCH">
+  <%end%>
+  <label for="book_title">Title</label>
+  <input type="text" name="book[title]", id="book_title" value="<%=book.title%>">
+
+  <br>
+
+  <label for="book_author">Author</label>
+  <input type="text" name="book[author]", id="book_author" value="<%=book.author%>">
+
+  <br>
+
+  <label for="book_year">Year</label>
+  <input type="text" name="book[year]", id="book_year" value="<%=book.year%>">
+
+  <br>
+
+  <label for="book_category">Category</label>
+  <select name="book[category]" id="book_category">
+    <option disabled <%= "selected" if action == :new%>>--- choose ---</option>
+    <option value="Fiction" <%= "selected" if book.category == "Fiction"%>>Fiction</option>
+    <option value="Non-Fiction" <%= "selected" if book.category == "Non-Fiction"%>>Non-Fiction</option>
+    <option value="Memoir" <%= "selected" if book.category == "Memoir"%>>Memoir</option>
+  </select>
+
+  <br>
+
+  <label for="book_description">Description</label>
+  <textarea name="book[description]" id="book_description" cols="30" rows="10">
+    <%= book.description%>
+  </textarea>
+
+  <input type="submit" value="<%= "#{action} book"%>">
+</form>

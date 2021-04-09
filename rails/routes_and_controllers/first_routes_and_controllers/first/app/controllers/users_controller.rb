@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   def index
-    render json: User.all
+    user_to_find = params[:username]
+
+    if user_to_find
+      render json: User.where("users.username ILIKE ?", "%#{user_to_find}%")
+    else
+      render json: User.all
+    end
   end
 
   def create
@@ -29,7 +35,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     if user.destroy
-      render plain: "user removed"
+      render json: user
     else
       render json: user.errors.full_messages, status: :unprocessable_entity
     end
@@ -37,6 +43,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :name)
+    params.require(:user).permit(:username)
   end
 end
