@@ -1,0 +1,20 @@
+<h1><%= @cat.name %>!</h1>
+<table style="border: 1px solid black;">
+  <thead>
+    <tr>
+      <th colspan="2"><%= "About #{@cat.name}" %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cat.attribute_names[1..4].each do |attribute| %>
+      <tr>
+      
+        <td><%= attribute.capitalize %>:</td>
+        <td><%= @cat.send(attribute) %></td>
+      </tr>
+      
+    <% end %>
+
+  </tbody>
+</table>
