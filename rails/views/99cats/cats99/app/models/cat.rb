@@ -7,6 +7,8 @@ class Cat < ApplicationRecord
   validates :color, inclusion: {in: CAT_COLORS, message: "Only black or yellow allowed"}
   validates :sex, length: {maximum: 1}, inclusion: {in: CAT_SEX, message: "Only m or f allowed"}
 
+  has_many :cat_rental_requests, dependent: :destroy
+
   def age
     birth = Date.parse(self.birth_date)
     today = Date.today
