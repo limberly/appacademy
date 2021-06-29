@@ -1,0 +1,13 @@
+<% if flash.now[:error] %>
+  <%= flash.now[:error] %>
+<% end %>
+
+<form action="<%=action_url%>" method="post">
+  <%= csrf_token %>
+  <input type="hidden" name="_method" value="<%=method%>">
+
+  <label for="band_name">name</label>
+  <input type="text" id="band_name" name="band[name]" valud="<%=@band.name%>">
+
+  <input type="submit" value="<%=method == 'post' ? "create" : "edit" %> band">
+</form>

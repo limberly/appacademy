@@ -1,0 +1,7 @@
+<h1>Add album!</h1>
+
+<% if flash.now[:error] %>
+  <p><%= flash.now[:error] %></p>
+<% end %>
+
+<%= render 'form', action_url: albums_url, method: "post", album: @album, bands: @bands, band: @band %>

@@ -1,0 +1,40 @@
+<h1><%= @album.title %>!!</h1>
+
+
+<h2>album info</h2>
+<ul>
+  <% @album.attributes.except(:created_at, :updated_at).each do |att| %>
+    <li>
+      <%=att.first%>: <%= att.second %>
+    </li>
+  <% end %>
+</ul>
+
+<h2>tracks</h2>
+<a href="<%=new_album_track_url(@album)%>">add track</a>
+<ol>
+  <% @tracks.each do |track| %>
+    <li><a href="<%=track_url(track)%>"><%= track.title %></a></li>
+  <% end %>  
+</ol>
+
+
+<br>
+
+<a href="<%=edit_album_url(@album)%>">edit album</a>
+<br>
+
+<form action="<%=album_url(@album)%>" method="post">
+  <%= csrf_token %>
+
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete album">
+
+</form>
+
+<br>
+<a href="<%=band_url(id: @album.band_id)%>">album list</a>
+
+
+<br>
+<a href="/bands">bands list</a>

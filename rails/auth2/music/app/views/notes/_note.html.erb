@@ -1,0 +1,10 @@
+<p><%= note.email %> wrote: note: <%= note.content %></p>
+<% if current_user.email == note.email %>
+  <a href="<%=edit_note_url(note.id)%>">edit note</a>
+  <form action="<%=note_url(note.id)%>" method="post">
+    <%= csrf_token %>
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="delete note">
+  </form>
+<% end %>
+

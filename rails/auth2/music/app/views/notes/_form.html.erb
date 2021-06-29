@@ -1,0 +1,11 @@
+<form action="<%=action_url%>" method="post">
+  <%= csrf_token %>
+  <input type="hidden" name="_method" value="<%=method%>">
+
+  <label for="note_content"></label>
+  <textarea name="note[content]" id="note_content" cols="30" rows="10"><%=@note.content%></textarea>
+
+  <input type="hidden" name="note[track_id]" value="<%=@track_id || @note.track_id%>">
+
+  <input type="submit" value="<%=method == "post" ? "add" : "edit" %> note">
+</form>

@@ -1,0 +1,12 @@
+<h1>log in!</h1>
+<form action="/session" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+
+  <label for="user_email">email</label>
+  <input type="text" id="user_email" name="user[email]">
+
+  <label for="user_password">password</label>
+  <input type="text" id="user_password" name="user[password]">
+
+  <input type="submit" value="login!">
+</form>

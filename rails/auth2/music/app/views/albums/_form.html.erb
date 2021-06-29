@@ -1,0 +1,37 @@
+<% if flash.now[:error] %>
+  <p><%= flash.now[:error] %></p>
+<% end %>
+
+
+<form action="<%=action_url%>" method="post">
+
+  <%= csrf_token %>
+  <input type="hidden" name="_method" value="<%=method%>">
+
+  <label for="album_title">title</label>
+  <input type="text" id="album_title" name="album[title]" value="<%=album.title%>">
+
+  <label for="album_year">year</label>
+  <input type="text" id="album_year" name="album[year]" value="<%=album.year%>">
+
+  <br>
+  <% Album::ALBUM_TYPES.each do |t|%>
+    <label for="album_type_#{t}"><%=t%></label>
+    <input <%= "checked" if t == "studio" %> type="radio" id="album_type_#{t}" name="album[album_type]" <% "selected" if album.album_type == t %> value="<%=t%>">
+  <% end %>
+  
+  <br>
+
+  <label for="album_band_name">band name</label>
+  <select name="album[band_name]" id="album_band_name">
+    <option disabled <%= "selected" if !album.persisted? %> value="">Choose an option</option>
+    
+    <% bands.each do |b| %>
+      <option <%= "selected" if band.name == b.name %> value="<%=b.name%>"><%=b.name%></option>
+    <% end %>
+  </select>
+
+  <input type="submit" value="<%=method == "post" ? "add" : "update" %> album">
+  
+
+</form>

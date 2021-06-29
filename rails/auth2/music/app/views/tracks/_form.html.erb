@@ -1,0 +1,45 @@
+<%= flash_now_error %>
+
+<form action="<%=action_url%>" method="post">
+<%= csrf_token %>
+<input type="hidden" name="_method" value="<%=method%>">
+
+<label for="track_title">title</label>
+<input type="text" id="track_title" name="track[title]" value="<%=@track.title%>">
+
+<label for="track_ord">track number</label>
+<input type="text" id="track_ord" name="track[ord]" value="<%=@track.ord%>">
+
+<br>
+
+<% Track::TRACK_TYPES.each do |t| %>
+  <label for="track_track_type_#{t}"><%= t %></label>
+  <input type="radio"
+         id="track_track_type_#{t}"
+         name="track[track_type]"
+         value="<%=t%>"
+         <%= "checked" if @track.track_type == t %>
+         <%= "checked" if !@track.persisted? && t == "regular" %>
+  >
+<% end %>
+
+<br>
+
+<label for="track_album_name">album name</label>
+<select name="track[album_name]" id="track_album_name">
+  <option disabled value="">choose an album</option>
+  <% @albums.each do |album| %>
+    <option <%= "selected" if album.title == @album.title %> value="<%=album.title%>"><%=album.title%></option>
+  <% end %>
+</select>
+
+<br>
+
+<label for="track_lyrics">lyrics</label>
+<textarea name="track[lyrics]" id="track_lyrics" cols="30" rows="10"><%= @track.lyrics %></textarea>
+
+<input type="hidden" name="track[id]" value="<%=@track.id%>">
+
+<input type="submit" value="<%=method == "post" ? "add track" : "edit track"%>">
+
+</form>

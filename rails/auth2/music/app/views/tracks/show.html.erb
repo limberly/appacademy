@@ -1,0 +1,24 @@
+<h1><%= @track.title %></h1>
+
+<ul>
+  <% @track.attributes.except("id", "album_id", "created_at", "updated_at").each do |key, value|%>
+    <% key = "Track number" if key == "ord" %>
+    <% value = ugly_lyrics(value) if key == "lyrics"  %>
+    <li><%= key %>: <%= value %></li>
+  <% end %>
+</ul>
+
+<a href="<%=new_track_note_url(@track.id)%>">add note</a>
+<ul>
+  <li><%= render @notes %></li>
+</ul>
+
+<a href="<%=edit_track_url(@track)%>">edit track</a>
+
+<form action="<%=track_url(@track)%>" method="post">
+  <%= csrf_token %>
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete track">
+</form>
+
+<a href="<%=album_url(@track.album_id)%>">track list</a>
