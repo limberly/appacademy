@@ -37,10 +37,6 @@ Elephant.prototype.play = function() {
     console.log(this.name + ' is ' + this.tricks[selectTrick]);
 };
 
-// ele.trumpet();
-// ele.grow();
-// ele.addTrick('eat pussy');
-// ele.play();
 
 let ellie = new Elephant("Ellie", 185, ["giving human friends a ride", "playing hide and seek"]);
 let charlie = new Elephant("Charlie", 200, ["painting pictures", "spraying water for a slip and slide"]);
